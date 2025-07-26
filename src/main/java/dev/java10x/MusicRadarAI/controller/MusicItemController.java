@@ -48,7 +48,7 @@ public class MusicItemController {
         }
     }
 
-    @PutMapping("/update/{id}")
+    @PatchMapping("/update/{id}")
     public ResponseEntity<?> updateMusic(@PathVariable UUID id){
         MusicItemDTO musicUpdate = musicItemService.getMusic(id);
 
