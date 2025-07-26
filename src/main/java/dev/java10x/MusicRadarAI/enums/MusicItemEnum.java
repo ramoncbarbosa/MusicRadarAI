@@ -1,0 +1,32 @@
+package dev.java10x.MusicRadarAI.enums;
+
+public enum MusicItemEnum {
+    POP,
+    ROCK,
+    INDIE,
+    PUNK,
+    METAL,
+    HIP_HOP,
+    RAP,
+    ELECTRONIC,
+    HOUSE,
+    TECHNO,
+    AMBIENT,
+    DANCE,
+    JAZZ,
+    BLUES,
+    SOUL,
+    FUNK,
+    GOSPEL,
+    MPB,
+    SAMBA,
+    BOSSA_NOVA,
+    SERTANEJO,
+    FORRO,
+    REGGAE,
+    LATIN,
+    CLASSICAL,
+    COUNTRY,
+    FOLK,
+    OTHER;
+}
