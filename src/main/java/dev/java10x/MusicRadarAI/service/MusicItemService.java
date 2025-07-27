@@ -41,32 +41,33 @@ public class MusicItemService {
                 .orElse(null);
     }
 
-    public MusicItemDTO updateMusic(UUID id, MusicItemDTO music){
+    public Optional<MusicItemDTO> updateMusic(UUID id, MusicItemDTO music){
         Optional<MusicItemModel> musicExist = musicItemRepository.findById(id);
-        if(musicExist.isPresent()){
-            MusicItemModel specificMusic = musicExist.get();
 
-            if(music.getName() != null){
-                music.setName(music.getName());
-            }
-
-            if(music.getArtist() != null){
-                music.setArtist(music.getArtist());
-            }
-
-            if(music.getReleaseDate() != null){
-                music.setReleaseDate(music.getReleaseDate());
-            }
-
-            if(music.getGenres() != null){
-                music.setGenres(music.getGenres());
-            }
-
-            MusicItemModel savingMusic = musicItemRepository.save(specificMusic);
-            return musicItemMapper.map(savingMusic);
+        if (musicExist.isEmpty()) {
+            return Optional.empty();
         }
 
-        return null;
+        MusicItemModel musicToUpdate = musicExist.get();
+
+        if(music.getName() != null){
+            music.setName(music.getName());
+        }
+
+        if(music.getArtist() != null){
+            music.setArtist(music.getArtist());
+        }
+
+        if(music.getReleaseDate() != null){
+            music.setReleaseDate(music.getReleaseDate());
+        }
+
+        if(music.getGenres() != null){
+            music.setGenres(music.getGenres());
+        }
+
+        MusicItemModel updatedMusic = musicItemRepository.save(musicToUpdate);
+        return Optional.of(musicItemMapper.map(updatedMusic));
     }
 
 
@@ -77,5 +78,5 @@ public class MusicItemService {
         }
     }
 
-
+    //Listar todas as músicas de um genero especifico
 }

@@ -1,6 +1,7 @@
 package dev.java10x.MusicRadarAI.controller;
 
 import dev.java10x.MusicRadarAI.DTO.MusicItemDTO;
+import dev.java10x.MusicRadarAI.model.MusicItemModel;
 import dev.java10x.MusicRadarAI.repository.MusicItemRepository;
 import dev.java10x.MusicRadarAI.service.MusicItemService;
 import org.springframework.http.HttpStatus;
@@ -49,19 +50,16 @@ public class MusicItemController {
     }
 
     @PatchMapping("/update/{id}")
-    public ResponseEntity<?> updateMusic(@PathVariable UUID id){
-        MusicItemDTO musicUpdate = musicItemService.getMusic(id);
-
-        if(musicUpdate != null){
-            return ResponseEntity.ok(musicUpdate);
-        } else{
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<MusicItemDTO> updateMusic(@PathVariable UUID id, @RequestBody MusicItemDTO music) {
+        return musicItemService.updateMusic(id, music)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/remove/{id}")
-    public void removeMusic(UUID id){
+    public ResponseEntity<Void> removeMusic(@PathVariable UUID id){
         musicItemService.removeMusic(id);
+        return ResponseEntity.noContent().build();
     }
 
 
