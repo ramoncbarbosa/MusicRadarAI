@@ -14,7 +14,7 @@ public class MusicItemMapper {
         musicItemModel.setName(musicItemDTO.getName());
         musicItemModel.setArtist(musicItemDTO.getArtist());
         musicItemModel.setReleaseDate(musicItemDTO.getReleaseDate());
-        musicItemModel.setGenre(musicItemDTO.getGenres());
+        musicItemModel.setGenre(musicItemDTO.getGenre());
 
         return musicItemModel;
     }
@@ -27,7 +27,7 @@ public class MusicItemMapper {
         musicItemDTO.setName(musicItemModel.getName());
         musicItemDTO.setArtist(musicItemModel.getArtist());
         musicItemDTO.setReleaseDate(musicItemDTO.getReleaseDate());
-        musicItemDTO.setGenres(musicItemModel.getGenre());
+        musicItemDTO.setGenre(musicItemModel.getGenre());
 
         return musicItemDTO;
     }

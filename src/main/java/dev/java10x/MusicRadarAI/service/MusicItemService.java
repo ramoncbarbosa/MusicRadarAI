@@ -51,19 +51,19 @@ public class MusicItemService {
         MusicItemModel musicToUpdate = musicExist.get();
 
         if(music.getName() != null){
-            music.setName(music.getName());
+            musicToUpdate.setName(music.getName());
         }
 
         if(music.getArtist() != null){
-            music.setArtist(music.getArtist());
+            musicToUpdate.setArtist(music.getArtist());
         }
 
         if(music.getReleaseDate() != null){
-            music.setReleaseDate(music.getReleaseDate());
+            musicToUpdate.setReleaseDate(music.getReleaseDate());
         }
 
-        if(music.getGenres() != null){
-            music.setGenres(music.getGenres());
+        if(music.getGenre() != null){
+            musicToUpdate.setGenre(music.getGenre());
         }
 
         MusicItemModel updatedMusic = musicItemRepository.save(musicToUpdate);

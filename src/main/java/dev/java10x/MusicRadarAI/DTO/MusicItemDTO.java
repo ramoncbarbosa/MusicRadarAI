@@ -14,7 +14,7 @@ public class MusicItemDTO {
     private String name;
     private String artist;
     private Integer releaseDate;
-    private MusicItemEnum genres;
+    private MusicItemEnum genre;
 
     public UUID getId() {
         return id;
@@ -48,11 +48,11 @@ public class MusicItemDTO {
         this.releaseDate = releaseDate;
     }
 
-    public MusicItemEnum getGenres() {
-        return genres;
+    public MusicItemEnum getGenre() {
+        return genre;
     }
 
-    public void setGenres(MusicItemEnum genres) {
-        this.genres = genres;
+    public void setGenre(MusicItemEnum genre) {
+        this.genre = genre;
     }
 }
