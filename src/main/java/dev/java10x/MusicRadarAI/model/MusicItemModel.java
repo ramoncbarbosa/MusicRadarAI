@@ -19,7 +19,10 @@ public class MusicItemModel {
     private UUID id;
     private String name;
     private String artist;
+
+    @Column(name = "release_date")
     private Integer releaseDate;
+
     @Enumerated(EnumType.STRING)
     private MusicItemEnum genre;
 

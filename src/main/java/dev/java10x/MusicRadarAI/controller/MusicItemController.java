@@ -39,7 +39,7 @@ public class MusicItemController {
         }
     }
 
-    @GetMapping("/list{id}")
+    @GetMapping("/list/{id}")
     public ResponseEntity<?> getMusic(@PathVariable UUID id){
         MusicItemDTO musicLocation = musicItemService.getMusic(id);
         if(musicLocation != null){

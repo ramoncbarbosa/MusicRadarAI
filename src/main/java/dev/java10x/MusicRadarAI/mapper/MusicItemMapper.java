@@ -26,7 +26,7 @@ public class MusicItemMapper {
         musicItemDTO.setId(musicItemModel.getId());
         musicItemDTO.setName(musicItemModel.getName());
         musicItemDTO.setArtist(musicItemModel.getArtist());
-        musicItemDTO.setReleaseDate(musicItemDTO.getReleaseDate());
+        musicItemDTO.setReleaseDate(musicItemModel.getReleaseDate());
         musicItemDTO.setGenre(musicItemModel.getGenre());
 
         return musicItemDTO;
