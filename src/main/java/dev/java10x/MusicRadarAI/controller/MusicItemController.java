@@ -1,7 +1,6 @@
 package dev.java10x.MusicRadarAI.controller;
 
 import dev.java10x.MusicRadarAI.DTO.MusicItemDTO;
-import dev.java10x.MusicRadarAI.model.MusicItemModel;
 import dev.java10x.MusicRadarAI.repository.MusicItemRepository;
 import dev.java10x.MusicRadarAI.service.MusicItemService;
 import org.springframework.http.HttpStatus;
