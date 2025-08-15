@@ -8,14 +8,14 @@ import reactor.core.publisher.Mono;
 
 @RestController("/")
 public class GenerateMusicSuggestionController {
-    private GenerateMusicSuggestionService Recipeservice;
+    private GenerateMusicSuggestionService generateMusicSuggestionService;
 
-    public GenerateMusicSuggestionController(GenerateMusicSuggestionService Recipeservice) {
-        this.Recipeservice = Recipeservice;
+    public GenerateMusicSuggestionController(GenerateMusicSuggestionService generateMusicSuggestionService) {
+        this.generateMusicSuggestionService = generateMusicSuggestionService;
     }
 
     @GetMapping
-    public Mono<ResponseEntity<String>> generateMusic(){
-        return Recipeservice.generateMusic();
+    public Mono<ResponseEntity<String>> generateMusicSuggestion(){
+        return generateMusicSuggestionService.generateMusic();
     }
 }

@@ -1,5 +1,6 @@
 package dev.java10x.MusicRadarAI.service;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
@@ -30,16 +31,16 @@ public class GenerateMusicSuggestionService {
     *
     * */
 
-    public Mono<String> generateMusic(){
-        String prompt = "Agora você é um especialista em música e vai me sugerir músicas com base nas músicas que irei te passar, ok?";
-        Map<String, Objects> requestBody = Map.of(
+    public Mono<ResponseEntity<String>> generateMusic(){
+        String prompt = "Agora você é um audiofilo e especialista em música de diversos generos e vai me sugerir músicas com base nas músicas que irei te passar, ok?";
+        Map<String, Object> requestBody = Map.of(
                 "model", "gpt-4o-mini",
-                "messages", List.of(
+                "input", List.of(
                         Map.of("role", "system", "content", "Você é um assistente"),
                         Map.of("role", "user", "content", prompt)
                 )
         );
 
-        return "";
+        return webClient.post().
     }
 }
