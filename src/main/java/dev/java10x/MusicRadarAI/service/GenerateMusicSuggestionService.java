@@ -1,6 +1,6 @@
 package dev.java10x.MusicRadarAI.service;
 
-import org.apache.tomcat.util.http.parser.Authorization;
+import dev.java10x.MusicRadarAI.DTO.MusicItemDTO;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class GenerateMusicSuggestionService {
@@ -34,17 +34,30 @@ public class GenerateMusicSuggestionService {
     *
     * */
 
-    public Mono<ResponseEntity<String>> generateMusic(){
-        String prompt = "Agora você é um audiofilo e especialista em música de diversos generos e vai me sugerir músicas com base nas músicas que irei te passar, ok?";
+    public Mono<ResponseEntity<String>> generateMusic(List<MusicItemDTO> musicItemDTOs) {
+
+        String musicsDB = musicItemDTOs.stream()
+                .map(item -> String.format(
+                        "Nome: %s, Artista: %s, Ano de Lançamento: %d, Gênero: %s",
+                        item.getName(),
+                        item.getArtist(),
+                        item.getReleaseDate(),
+                        item.getGenre().name()
+                ))
+                .collect(Collectors.joining("\n"));
+
+        String prompt = "Baseado nas seguintes músicas, me sugira músicas parecidas com os seguintes requisitos:\n" + musicsDB;
+
         Map<String, Object> requestBody = Map.of(
                 "model", "gpt-4o-mini",
-                "input", List.of(
+                "messages", List.of(
                         Map.of("role", "system", "content", "Você é um assistente"),
                         Map.of("role", "user", "content", prompt)
                 )
         );
 
         return webClient.post()
+                .uri("https://api.openai.com/v1/chat/completions")
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + apiKey)
                 .bodyValue(requestBody)
