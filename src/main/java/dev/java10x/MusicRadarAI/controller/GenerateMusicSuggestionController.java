@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
-@RestController("/")
+@RestController("/music")
 public class GenerateMusicSuggestionController {
     private GenerateMusicSuggestionService generateMusicSuggestionService;
 
@@ -14,8 +14,9 @@ public class GenerateMusicSuggestionController {
         this.generateMusicSuggestionService = generateMusicSuggestionService;
     }
 
-    @GetMapping
+    @GetMapping("/generate")
     public Mono<ResponseEntity<String>> generateMusicSuggestion(){
-        return generateMusicSuggestionService.generateMusic();
+        return generateMusicSuggestionService.generateMusic()
+                .defaultIfEmpty(ResponseEntity.noContent().build());
     }
 }
